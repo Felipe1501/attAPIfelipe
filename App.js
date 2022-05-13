@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import Cep from './components/Cep';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           style={styles.bloco}>
               <Text style={styles.txtBloco}>BUSCAR</Text>
           </TouchableOpacity>
+          <Cep />
       </View>
     </View>
   );
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   txtBloco: {
-      backgroundColor: '#1D1AF5',
+      backgroundColor: '#1FC9CC',
       borderColor: '#1D1AF5',
       borderRadius: 20,
       width: '80%',
