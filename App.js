@@ -1,23 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Cep from './components/Cep';
+import API from './components/Api';
 
 export default function App() {
+  const [cep, setCep] = useState("");
+  const [inputCep, setInputCep] = useState(0);
+  
+  async function buscarCep(){
+    const resposta = await API.get(`ws/${inputCep}/json/`);
+    setCep(resposta.data);
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.texto}>HELLO HELLO!</Text>
-      <View style={styles.bloco}>
+      <View style={styles.texto}>
           <Text style={styles.texto}>DIGITE SEU CEP:</Text>
           <TextInput
           placeholder='ex: 11730000'
           keyboardType='numeric'
           style={styles.input}
+          onChangeText={(data)=>setInputCep(data)}
           />
           <TouchableOpacity
-          style={styles.bloco}>
+          style={styles.bloco}
+          onPress={buscarCep}>
               <Text style={styles.txtBloco}>BUSCAR</Text>
           </TouchableOpacity>
-          <Cep />
+          <Cep data={cep} />
       </View>
     </View>
   );
@@ -30,12 +40,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bloco: {
-      fontSize: 30,
-      marginTop: '3%',
-      width: '100%',
-      alignItems: 'center',
-  },
 
   texto:{
       fontSize: 25,
@@ -43,9 +47,8 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    width: '80%',
+    width: 200,
     borderBottomWidth: 2,
-    marginLeft: '5%',
     fontSize: 20,
     borderRadius: 10,
     marginTop: '3%',
@@ -54,13 +57,15 @@ const styles = StyleSheet.create({
   },
 
   txtBloco: {
+    marginTop: 10,
       backgroundColor: '#1FC9CC',
-      borderColor: '#1D1AF5',
-      borderRadius: 20,
-      width: '80%',
-      height: 40,
-      marginLeft: '5%',
+      borderWidth: 2,
+      borderColor: '#E6F5FF',
+      borderRadius: 10,
+      width: 200,
       textAlign: 'center',
+      height: 40, 
+      padding: 5, 
       fontSize: 20,
     },
 });

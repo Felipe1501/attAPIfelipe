@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-export default function Cep() {
+export default function Cep(props) {
   return (
     <>
-        <Text  style={styles.texto}>CIDADE: </Text>
-        <Text  style={styles.texto}>UF:</Text>
-        <Text style={styles.texto}>LOGRADOURO:</Text>
-        <Text style={styles.texto}>COMPLEMENTTO:</Text>
+        <Text  style={styles.texto}>CIDADE: {props.data.localidade} </Text>
+        <Text  style={styles.texto}>ESTADO: {props.data.uf}</Text>
+        <Text style={styles.texto}>RUA: {props.data.logradouro}</Text>
+        <Text style={styles.texto}>BAIRRO:  {props.data.bairro}</Text>
+        <Text style={styles.texto}>DDD:  0{props.data.ddd}</Text>
     </>
   );
 }
