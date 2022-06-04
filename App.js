@@ -11,6 +11,11 @@ export default function App() {
     const resposta = await API.get(`ws/${inputCep}/json/`);
     setCep(resposta.data);
   }
+
+  function limpar(){
+    setCep("");
+    setInputCep(0);
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.texto}>HELLO HELLO!</Text>
@@ -27,7 +32,14 @@ export default function App() {
           onPress={buscarCep}>
               <Text style={styles.txtBloco}>BUSCAR</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+          style={styles.bloco}
+          onPress={limpar}>
+              <Text style={styles.txtBloco}>LIMPAR</Text>
+          </TouchableOpacity>
           <Cep data={cep} />
+
+
       </View>
     </View>
   );
